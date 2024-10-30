@@ -15,8 +15,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.printf("hello, world\n");
-
 		String line = "";
 		List<BikeInfo> info = new ArrayList<>();
 		String filename = "day.csv";
@@ -54,9 +52,7 @@ public class Main {
 				info.add(new BikeInfo(season, month, holiday, day, weather, casual, registered, total));
 
 
-				// for (int i = 0; i < info.size(); i++) {
-				// 	System.out.println(info.get(i));
-				// }
+				
 
 				sortedInfo = info.stream().
 					sorted(Comparator.comparing(BikeInfo::getTotal).reversed()).collect(Collectors.toList());
@@ -68,11 +64,17 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		for (int i = 0; i < sortedInfo.size(); i++) {
-			System.out.printf("\n %s \n", sortedInfo.get(i));
-		}
+		// to check info read
+		// for (int i = 0; i < info.size(); i++) {
+		// 	System.out.println(info.get(i));
+		// }
 
-		System.out.println(sortedInfo.size());
+		// to check sorted data
+		// for (int i = 0; i < 5; i++) {
+		// 	System.out.printf("\n %s \n", sortedInfo.get(i) );
+		// }
+
+		// System.out.println("Number of rows read: " + sortedInfo.size() + "\n");
 
 		String[] position = {"highest", "second highest", "third highest", "forth highest", "fifth highest"};
 				
@@ -82,7 +84,7 @@ public class Main {
 			int curDay = sortedInfo.get(i).getDay();
 			String nDay = toWeekday(curDay);
 			int curMonth = sortedInfo.get(i).getMonth();
-			String nMonth = toMonth(curDay);
+			String nMonth = toMonth(curMonth);
 			int curTotal = sortedInfo.get(i).getTotal();
 			String nTotal = Integer.toString(curTotal);
 			int curWeather = sortedInfo.get(i).getWeather();
@@ -103,16 +105,17 @@ public class Main {
 	public static String toSeason(int season) {
 		//season (1:spring, 2:summer, 3:fall, 4:winter)
 		switch (season) {
-			case 1: return "spring";
-			case 2: return "summer";
-			case 3: return "fall";
-			case 4: return "winter";
+			case 1: return "Spring";
+			case 2: return "Summer";
+			case 3: return "Fall";
+			case 4: return "Winter";
 			default:
 				return "funny season";
 		}
 	}
 
 	public static String toWeekday(int weekday) {
+		// from readme file: (0 - Sunday, 1 - Monday, etc)
 		switch (weekday) {
 			case 0: return "Sunday";
 			case 1: return "Monday";
